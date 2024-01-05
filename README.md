@@ -13,6 +13,11 @@ Visualize the data stored in DataLayers using Grafana.
 
   ```bash
   cd datalayers-with-grafana
+
+  # Make sure it have execute permissions
+  ./init.sh
+  
+
   docker-compose up -d
   ```
 
