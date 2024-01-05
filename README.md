@@ -70,9 +70,13 @@ done
   docker exec -it datalayers dlsql -u admin -p public -c "select * from demo.sensor limit 10"
   ```
 
-7. Visualize data using Grafana..
+8. Visualize data using Grafana:
 
-  // todo
+  Visit: [http://localhost:30300/](http://localhost:30300/)
+
+  Username: admin
+  
+  Password: public
 
 ## License
 
