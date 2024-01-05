@@ -6,7 +6,7 @@ Visualize the data stored in DataLayers using Grafana.
 1. Clone the code repository. Please make sure you have installed the `git`, and then running the following commands to start the demo:
 
   ```bash
-  git clone git@github.com:datalayers-io/datalayers-with-grafana.git
+  git clone https://github.com/datalayers-io/datalayers-with-grafana.git
   ```
 
 2. Please make sure you have installed the [docker](https://www.docker.com/), and then running the following commands to start the demo:
