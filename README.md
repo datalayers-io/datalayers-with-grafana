@@ -30,9 +30,6 @@ Visualize the data stored in DataLayers using Grafana.
   docker logs -f datalayers
   ```
 
-  ![docker logs -f datalayers](./static/images/log.gif)
-
-
 4. Connect to DataLayers using the command-line tool:
 
   ```bash
