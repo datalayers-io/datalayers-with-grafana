@@ -17,7 +17,7 @@ services:
 
   datalayers:
     container_name: datalayers
-    image: datalayers/datalayers:nightly 
+    image: datalayers/datalayers:nightly
     ports:
       - 18308:3308
     env_file:
@@ -101,11 +101,15 @@ services:
       - 30300:3000
     env_file:
       - .env
+    environment:
+      - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=datalayers-flightsql-datasource
+      - GF_DEFAULT_APP_MODE=development
     volumes:
       ## https://grafana.com/docs/grafana/latest/setup-grafana/configure-docker/#default-paths
       - ./grafana/datasource.yaml://etc/grafana/provisioning/datasources/datalayers.yaml
       - ./grafana/providers.yaml://etc/grafana/provisioning/dashboards/datalayers.yaml
       - ./grafana/dashboard.json:/var/lib/grafana/dashboards/datalayers/dashboard.json
+      - ./grafana/datalayers-flightsql-datasource:/var/lib/grafana/plugins/datalayers-flightsql-datasource
     networks:
       - datalayers-network
 
