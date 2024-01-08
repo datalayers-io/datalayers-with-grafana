@@ -21,11 +21,17 @@ Visualize the data stored in DataLayers using Grafana.
   docker-compose up -d
   ```
 
+  ![docker-compose up -d](./static/images/docker_compose.gif)
+
+
 3. Running the following commands to see the message from DataLayers:
 
   ```bash
   docker logs -f datalayers
   ```
+
+  ![docker logs -f datalayers](./static/images/log.gif)
+
 
 4. Connect to DataLayers using the command-line tool:
 
@@ -39,6 +45,9 @@ Visualize the data stored in DataLayers using Grafana.
   docker exec -it datalayers dlsql -u admin -p public
   > create schema demo;
   ```
+
+  ![create schema demo](./static/images/create_schema.gif)
+
 
 6. Write data using schemaless:  
 Use the following script to write data,
