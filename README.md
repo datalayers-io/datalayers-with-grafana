@@ -84,6 +84,32 @@ done
   
   Password: public
 
+   - Add datasource
+
+   Open the left-side menu and click `Connections - Data sources`, Then click `Add new data source` button, Find the `Datalayers` datasource like this:
+
+   ![find datasource](./static/images/find_datasource.png) 
+
+   - Config the datasource plugin, you can click the `Save & test` button to testing connection.
+
+   ![config datasource](./static/images/config_datasource.jpg)
+
+
+   - Try to add dashboard by `Menu - Dashboards` page.
+
+   ![add dashboard](./static/images/dashboard.jpg)
+   
+   For example:
+   
+   ``` sql
+   SELECT time_split('13s', _default_time_index_) as ts, avg(speed) FROM demo.sensor where $__timeFilter(ts) and location='cd' group by ts;
+   ```
+   or use the others [Grafana Variables](https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#global-variables), like this:
+
+   ``` sql
+   SELECT time_split('$__interval', _default_time_index_) as ts, avg(speed) FROM demo.sensor where $__timeFilter(ts) and location='cd' group by ts;
+   ```
+
 ## License
 
 [Apache License 2.0](./LICENSE)
