@@ -24,5 +24,5 @@ fi
 
 echo "The latest release tag of $REPO_NAME is: $LATEST_RELEASE_TAG"
 
-curl -L https://github.com/datalayers-io/grafana-flightsql-datasource/releases/download/$LATEST_RELEASE_TAG/datalayers-flightsql-datasource-$VERSION.zip --output ./grafana/datalayers-flightsql-datasource.zip
-unzip ./grafana/datalayers-flightsql-datasource.zip -d ./grafana
+curl -L https://github.com/datalayers-io/grafana-flightsql-datasource/releases/download/$LATEST_RELEASE_TAG/datalayers-$VERSION.zip --output ./grafana/datalayers.zip
+unzip ./grafana/datalayers.zip -d ./grafana
