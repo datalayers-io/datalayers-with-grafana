@@ -48,26 +48,8 @@ Visualize the data stored in DataLayers using Grafana.
 
 6. Write data using schemaless:  
 Use the following script to write data,
-```shell
-#!/bin/bash
-
-while true
-do
-    my_array=(cd bj sh hz sz)
-    array_length=${#my_array[@]}
-    random_index=$((RANDOM % array_length))
-    location=${my_array[$random_index]}
-
-    speed=$((RANDOM % 21 + 100))
-    temperature=$((RANDOM % 11 + 10))
-
-    timestamp=$(date +%s%9N) # ns
-
-    line="sensor,location=${location} speed=${speed}i,temperature=${temperature}i ${timestamp}"
-    echo $line
-    curl -XPOST "http://127.0.0.1:18333/write?precision=ns&p=public&u=admin&db=demo" --data-binary "$line"
-
-done
+```
+curl -XPOST "http://127.0.0.1:18333/write?precision=ns&p=public&u=admin&db=demo" --data-binary "sensor,location=bj speed=103i,temperature=19i 1705639508013794243" -vvv
 ```
 
 7. Query data through the command line:
