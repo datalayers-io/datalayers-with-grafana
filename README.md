@@ -64,7 +64,7 @@ curl -XPOST "http://127.0.0.1:18333/write?precision=ns&p=public&u=admin&db=demo"
 
   Username: admin
   
-  Password: public
+  Password: admin
 
 
   Try to add dashboard by `Menu - Dashboards` page.
