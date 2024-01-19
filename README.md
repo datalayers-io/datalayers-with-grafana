@@ -8,16 +8,16 @@ Visualize the data stored in DataLayers using Grafana.
   ```bash
   git clone https://github.com/datalayers-io/datalayers-with-grafana.git
   ```
+  Please run the following script first.
+  ```bash
+  cd datalayers-with-grafana
+  
+  ./init.sh  # Make sure it have execute permissions
+  ```
 
 2. Please make sure you have installed the [docker](https://www.docker.com/), and then running the following commands to start the demo:
 
   ```bash
-  cd datalayers-with-grafana
-
-  # Make sure it have execute permissions
-  ./init.sh
-  
-
   docker-compose up -d
   ```
 
@@ -40,11 +40,12 @@ Visualize the data stored in DataLayers using Grafana.
 
   ```bash
   docker exec -it datalayers dlsql -u admin -p public
-  > create schema demo;
+  dlsql> create schema demo;
   ```
 
   ![create schema demo](./static/images/create_schema.gif)
 
+  You can use `exit` command to exit the dlsql session.
 
 6. Write data using schemaless:  
 Use the following script to write data,

@@ -36,7 +36,6 @@ services:
     env_file:
       - .env
     environment:
-      - DATALAYERS_ADAPTER_PROMETHEUS__HOST=prometheus
       - DATALAYERS_ADAPTER_DATALAYERS__ADDRESS=http://datalayers:3308
       - DATALAYERS_ADAPTER_DATALAYERS__USERNAME=admin
       - DATALAYERS_ADAPTER_DATALAYERS__PASSWORD=public

@@ -1,8 +1,0 @@
-## https://grafana.com/docs/grafana/latest/administration/provisioning/#example-data-source-config-file
-apiVersion: 1
-providers:
-  - name: "DataLayers FDB"
-    folder: "DataLayers FDB"
-    options:
-      path: "/var/lib/grafana/dashboards/datalayers"
-    type: file
