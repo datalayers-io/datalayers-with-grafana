@@ -84,18 +84,8 @@ done
   
   Password: public
 
-   - Add datasource
 
-   Open the left-side menu and click `Connections - Data sources`, Then click `Add new data source` button, Find the `Datalayers` datasource like this:
-
-   ![find datasource](./static/images/find_datasource.png) 
-
-   - Config the datasource plugin, you can click the `Save & test` button to testing connection.
-
-   ![config datasource](./static/images/config_datasource.jpg)
-
-
-   - Try to add dashboard by `Menu - Dashboards` page.
+  Try to add dashboard by `Menu - Dashboards` page.
 
    ![add dashboard](./static/images/dashboard.jpg)
    
