@@ -5,7 +5,7 @@ services:
     container_name: datalayers
     image: datalayers/datalayers:nightly
     ports:
-      - 18308:3308
+      - 18360:8360
     env_file:
       - .env
     environment:
@@ -29,14 +29,14 @@ services:
     container_name: datalayers-adapter
     image: datalayers/datalayers-adapter:nightly
     ports:
-      - 18333:3333
+      - 18361:8361
     depends_on:
       datalayers:
         condition: service_healthy
     env_file:
       - .env
     environment:
-      - DATALAYERS_ADAPTER_DATALAYERS__ADDRESS=http://datalayers:3308
+      - DATALAYERS_ADAPTER_DATALAYERS__ADDRESS=http://datalayers:8360
       - DATALAYERS_ADAPTER_DATALAYERS__USERNAME=admin
       - DATALAYERS_ADAPTER_DATALAYERS__PASSWORD=public
       - RUST_LOG=debug
