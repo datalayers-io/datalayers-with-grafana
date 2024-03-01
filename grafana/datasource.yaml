@@ -4,9 +4,9 @@ datasources:
   - name: Datalayers
     type: datalayers
     orgId: 1
-    url: http://datalayers:3308
+    url: http://datalayers:8360
     jsonData:
-      host: "datalayers:3308"
+      host: "datalayers:8360"
       selectedAuthType: "username/password"
       username: "admin"
     secureJsonData:

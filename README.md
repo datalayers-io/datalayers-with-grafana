@@ -50,7 +50,16 @@ Visualize the data stored in DataLayers using Grafana.
 6. Write data using schemaless:  
 Use the following script to write data,
 ```
-curl -XPOST "http://127.0.0.1:18361/write?precision=ns&p=public&u=admin&db=demo" --data-binary "sensor,location=bj speed=103i,temperature=19i 1705639508013794243" -vvv
+while true
+do
+    speed=$((RANDOM % 21 + 100))
+    temperature=$((RANDOM % 11 + 10))
+    timestamp=$(date +%s%9N) # ns
+    line="sensor,location=cd speed=${speed}i,temperature=${temperature}i ${timestamp}"
+    echo $line
+    sleep 1
+    curl -XPOST "http://127.0.0.1:18361/write?precision=ns&p=public&u=admin&db=demo" --data-binary "$line"
+done
 ```
 
 7. Query data through the command line:
@@ -75,7 +84,7 @@ curl -XPOST "http://127.0.0.1:18361/write?precision=ns&p=public&u=admin&db=demo"
    For example:
    
    ``` sql
-   SELECT time_split('13s', _default_time_index_) as ts, avg(speed) FROM demo.sensor where $__timeFilter(ts) and location='cd' group by ts;
+   SELECT time_split('5s', _default_time_index_) as ts, avg(speed) FROM demo.sensor where $__timeFilter(ts) and location='cd' group by ts;
    ```
    or use the others [Grafana Variables](https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#global-variables), like this:
 
