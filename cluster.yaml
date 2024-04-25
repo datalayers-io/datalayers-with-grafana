@@ -23,6 +23,11 @@ services:
     depends_on:
       fdb:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD", "dlsql", "-u", "admin", "-p", "public"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
     command:
       - /bin/bash
       - -c
@@ -54,6 +59,9 @@ services:
       - "18361:80"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      datalayers:
+        condition: service_healthy
     networks:
       - datalayers-cluster-network
 
