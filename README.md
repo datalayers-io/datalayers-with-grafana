@@ -19,34 +19,61 @@ Visualize the data stored in DataLayers using Grafana.
 
 3. Please make sure you have installed the [docker](https://www.docker.com/), and then running the following commands to start the demo:
 
-``` bash
-# Starts with standalone-mode
-docker compose -f standalone.yaml up -d
+Starts with standalone mode:
 
-# Starts with cluster-mode
+``` bash
+docker compose -f standalone.yaml up -d
+```
+
+Or starts with cluster mode:
+
+``` bash
 docker compose -f cluster.yaml up -d --scale datalayers=2
 ```
 
 ![docker-compose up](./static/images/docker_compose.gif)
 
-4. Running the following commands to see the message from DataLayers:
+4. Running the following commands to see the message from DataLayers: (If you don't care about logs, skip it.)
 
-```bash
-docker compose -f {your_started_yaml_file} logs datalayers
+Standalone mode:
+
+``` bash
+docker compose -f standalone.yaml logs datalayers
 ```
 
-> If your're using standalone-mode, {your_started_yaml_file} means `standalone.yaml`, otherwise means `cluster.yaml`
+Cluster mode:
+
+``` bash
+docker compose -f cluster.yaml logs datalayers
+```
 
 5. Connect to DataLayers using the command-line tool:
 
+Standalone mode:
+
 ```bash
-docker compose exec -f {your_started_yaml_file} -it datalayers dlsql -u admin -p public
+docker compose -f standalone.yaml exec -it datalayers dlsql -u admin -p public
+```
+
+Cluster mode:
+
+```bash
+docker compose -f cluster.yaml exec -it datalayers dlsql -u admin -p public
 ```
 
 6. Create a database using the command-line tool:
 
+Standalone mode:
+
 ```bash
-docker compose exec -f {your_started_yaml_file} -it datalayers dlsql -u admin -p public
+docker compose -f standalone.yaml exec -it datalayers dlsql -u admin -p public
+dlsql> create database demo;
+```
+
+Cluster mode:
+
+```bash
+docker compose -f cluster.yaml exec -it datalayers dlsql -u admin -p public
 dlsql> create database demo;
 ```
 
@@ -78,6 +105,22 @@ Visit: [http://localhost:30300/](http://localhost:30300/)
 
 > Username: admin <br> Password: admin
 
+
+## End the experience
+
+You can use below command to exit processes.
+
+Standalone mode:
+
+``` bash
+docker compose -f standalone.yaml down
+```
+
+Cluster mode:
+
+``` bash
+docker compose -f cluster.yaml down
+```
 
 ## License
 
