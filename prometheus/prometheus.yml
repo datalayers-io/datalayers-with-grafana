@@ -1,0 +1,16 @@
+global:
+  scrape_interval: 5s
+  scrape_timeout: 5s
+  evaluation_interval: 1m
+scrape_configs:
+  - job_name: datalayers
+    honor_timestamps: true
+    scrape_interval: 5s
+    scrape_timeout: 5s
+    metrics_path: /metrics
+    scheme: http
+    follow_redirects: true
+    dns_sd_configs:
+      - names: ["datalayers"]
+        type: "A"
+        port: 8361

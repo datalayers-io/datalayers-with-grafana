@@ -5,7 +5,7 @@ services:
     container_name: datalayers-standalone
     image: datalayers/datalayers:nightly
     ports:
-      - "18361:8361"
+      - 18361:8361
     environment:
       - DATALAYERS_SERVER__AUTH__USERNAME=admin
       - DATALAYERS_SERVER__AUTH__PASSWORD=public
@@ -18,16 +18,33 @@ services:
     networks:
       - datalayers-standalone-network
 
+  prometheus:
+    container_name: datalayers-standalone-prometheus
+    image: prom/prometheus:v2.30.3
+    ports:
+      - 19090:9090
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=15d
+      - --storage.tsdb.retention.size=20GB
+    networks:
+      - datalayers-standalone-network
+
   grafana:
     container_name: datalayers-standalone-grafana
     image: grafana/grafana:10.2.3
     ports:
-      - 30300:3000
+      - 13000:3000
     environment:
       - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=datalayers
     volumes:
       ## https://grafana.com/docs/grafana/latest/setup-grafana/configure-docker/#default-paths
-      - ./grafana/datasource.yaml://etc/grafana/provisioning/datasources/datalayers.yaml
+      - ./grafana/datasource.yaml:/etc/grafana/provisioning/datasources/datalayers.yaml
+      - ./grafana/providers.yaml:/etc/grafana/provisioning/dashboards/datalayers.yaml
+      - ./grafana/dashboard.json:/var/lib/grafana/dashboards/datalayers/dashboard.json
       - ./grafana/datalayers:/var/lib/grafana/plugins/datalayers
     networks:
       - datalayers-standalone-network
