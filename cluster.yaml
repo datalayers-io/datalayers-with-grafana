@@ -12,6 +12,27 @@ services:
     networks:
       - datalayers-cluster-network
 
+  fdb-helper:
+    container_name: datalayers-cluster-fdb-helper
+    image: datalayers/datalayers:nightly
+    healthcheck:
+      test: ["CMD", "fdbcli", "-exec", "status"]
+      interval: 3s
+      timeout: 1s
+      retries: 10
+    volumes:
+      - ./fdb.cluster:/etc/foundationdb/fdb.cluster
+    depends_on:
+      fdb:
+        condition: service_healthy
+    command:
+      - /bin/bash
+      - -c
+      - |
+        fdbcli --exec "configure new single ssd-rocksdb-v1"
+    networks:
+      - datalayers-cluster-network
+
   datalayers:
     image: datalayers/datalayers:nightly
     environment:
@@ -21,8 +42,8 @@ services:
     volumes:
       - ./fdb.cluster:/etc/foundationdb/fdb.cluster
     depends_on:
-      fdb:
-        condition: service_healthy
+      fdb-helper:
+        condition: service_completed_successfully
     healthcheck:
       test: ["CMD", "dlsql", "-u", "admin", "-p", "public"]
       interval: 5s
@@ -32,7 +53,6 @@ services:
       - /bin/bash
       - -c
       - |
-        fdbcli --exec "configure new single ssd-rocksdb-v1"
         export DATALAYERS_NODE__NAME="$(hostname -i):8366"
         datalayers
     networks:
