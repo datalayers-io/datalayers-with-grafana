@@ -82,26 +82,65 @@ dlsql> create database demo;
 7. Create tables:
 
 ``` bash
-todo
+CREATE TABLE test(
+  ts TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  speed int NOT NULL,
+  temperature int,
+  location string,
+  timestamp KEY (ts)) PARTITION BY HASH(speed) PARTITIONS 2 ENGINE=TimeSeries;
+
 ```
 
 6. Use the following script to write data:
 
 ``` bash
-todo
+while true
+do
+  speed=$((RANDOM % 21 + 100))
+  temperature=$((RANDOM % 11 + 10))
+  timestamp=$(date +%s%9N) # ns
+  code="insert into demo.test(speed,temperature,location) values(${speed}, ${temperature}, 'bj')"
+  echo "$code"
+  curl -u"admin:public" -X POST http://127.0.0.1:18361/api/v1/sql?db=demo -H 'Content-Type: application/binary' -d "$code" -s -o /dev/null
+  sleep 1
+done
 ```
 
 7. Query data through the command line:
 
+Standalone mode:
+
 ``` bash
-todo
+docker compose -f standalone.yaml exec -it datalayers dlsql -u admin -p public
+
+dlsql> select * from demo.test limit 10
+```
+
+
+Cluster mode:
+
+``` bash
+docker compose -f cluster.yaml exec -it datalayers dlsql -u admin -p public
+
+dlsql> select * from demo.test limit 10
 ```
 
 8. Visualize data using Grafana:
 
-todo
+Try to add dashboard by `Menu - Dashboards` page.
 
-Visit: [http://localhost:30300/](http://localhost:30300/)
+![add dashboard](./static/images/dashboard.jpg)
+
+For example:
+
+``` sql
+SELECT date_bin('5 seconds', ts) as timepoint, avg(speed) FROM demo.test where location='bj' group by timepoint;
+
+```
+As always, you can use [SQL functions](https://docs.datalayers.cn/datalayers/latest/sql-reference/sql-functions.html) in the sentence.
+
+
+Visit: [http://localhost:10300/](http://localhost:10300/)
 
 > Username: admin <br> Password: admin
 
