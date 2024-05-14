@@ -87,8 +87,9 @@ CREATE TABLE test(
   sn int NOT NULL,
   speed float NOT NULL,
   temperature float,
-  timestamp KEY (ts)) PARTITION BY HASH(sn) PARTITIONS 2 ENGINE=TimeSeries;
-
+  timestamp KEY (ts))
+PARTITION BY HASH(sn) PARTITIONS 2
+ENGINE=TimeSeries;
 ```
 
 6. Use the following script to write data:
