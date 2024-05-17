@@ -19,8 +19,6 @@ Visualize the data stored in DataLayers using Grafana.
 
 3. Please make sure you have installed the [docker](https://www.docker.com/), and then running the following commands to start the demo:
 
-Starts with standalone mode:
-
 ``` bash
 docker compose -f standalone.yaml up -d
 ```
@@ -29,23 +27,17 @@ docker compose -f standalone.yaml up -d
 
 4. Running the following commands to see the message from DataLayers: (If you don't care about logs, skip it.)
 
-Standalone mode:
-
 ``` bash
 docker compose -f standalone.yaml logs datalayers
 ```
 
 5. Connect to DataLayers using the command-line tool:
 
-Standalone mode:
-
 ```bash
 docker compose -f standalone.yaml exec -it datalayers dlsql -u admin -p public
 ```
 
 6. Create a database using the command-line tool:
-
-Standalone mode:
 
 ```bash
 docker compose -f standalone.yaml exec -it datalayers dlsql -u admin -p public
@@ -84,8 +76,6 @@ done
 
 7. Query data through the command line:
 
-Standalone mode:
-
 ``` bash
 docker compose -f standalone.yaml exec -it datalayers dlsql -u admin -p public
 
@@ -115,8 +105,6 @@ Visit: [http://localhost:10300/](http://localhost:10300/)
 ## End the experience
 
 You can use below command to exit processes.
-
-Standalone mode:
 
 ``` bash
 docker compose -f standalone.yaml down
