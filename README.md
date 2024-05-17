@@ -10,12 +10,14 @@ Visualize the data stored in DataLayers using Grafana.
   ```
   
 2. Please run the following script first.
-  ```bash
-  cd datalayers-with-grafana
-  
-  # Make sure it have execute permissions
-  ./init.sh  
-  ```
+
+``` bash
+cd datalayers-with-grafana
+```
+
+```bash
+./init.sh  
+```
 
 3. Please make sure you have installed the [docker](https://www.docker.com/), and then running the following commands to start the demo:
 
@@ -54,7 +56,6 @@ create database demo;
 7. Create tables:
 
 ``` bash
-# Select the database
 use demo;
 ```
 
@@ -131,3 +132,5 @@ docker compose -f standalone.yaml down
 ## Cluster-mode
 
 Click to [Cluster-mode](./README_CLUSTER.md) documentation.
+
+> If you want to quick start with cluster-mode. Please use `docker compose -f standalone.yaml down` to stop the services first.
