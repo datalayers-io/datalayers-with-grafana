@@ -3,7 +3,7 @@ version: "3.9"
 services:
   fdb:
     container_name: datalayers-cluster-fdb
-    image: foundationdb/foundationdb:7.1.31
+    image: foundationdb/foundationdb:7.3.27
     healthcheck:
       test: ["CMD", "nc", "-zv", "localhost", "4500"]
       interval: 3s

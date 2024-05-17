@@ -1,4 +1,4 @@
-# DataLayers with Grafana(standalone)
+# DataLayers with Grafana(cluster)
 Visualize the data stored in DataLayers using Grafana.
 
 ## How to use
@@ -24,32 +24,32 @@ docker pull datalayers/datalayers:nightly
 ```
 
 ``` bash
-docker compose -f standalone.yaml up -d
+docker compose -f cluster.yaml up -d
 ```
 
 4. Running the following commands to see the message from DataLayers: (If you don't care about logs, skip it.)
 
 ``` bash
-docker compose -f standalone.yaml logs datalayers
+docker compose -f cluster.yaml logs datalayers
 ```
 
 5. Connect to DataLayers using the command-line tool:
 
 ```bash
-docker compose -f standalone.yaml exec -it datalayers dlsql -u admin -p public
+docker compose -f cluster.yaml exec -it datalayers dlsql -u admin -p public
 ```
 
 6. Create a database using the command-line tool:
 
 ``` bash
-docker compose -f standalone.yaml exec -it datalayers dlsql -u admin -p public
+docker compose -f cluster.yaml exec -it datalayers dlsql -u admin -p public
 ```
 
 ```bash
 create database demo;
 ```
 
-![docker-compose create](./static/images/create_database_standalone.gif)
+![docker-compose create](./static/images/create_database_cluster.gif)
 
 7. Create tables:
 
@@ -88,7 +88,7 @@ done
 7. Query data through the command line:
 
 ``` bash
-docker compose -f standalone.yaml exec -it datalayers dlsql -u admin -p public
+docker compose -f cluster.yaml exec -it datalayers dlsql -u admin -p public
 ```
 
 ``` bash
@@ -110,6 +110,7 @@ For example:
 
 ``` sql
 SELECT date_bin('5 seconds', ts) as timepoint, avg(speed) FROM demo.test group by timepoint;
+
 ```
 As always, you can use [SQL functions](https://docs.datalayers.cn/datalayers/latest/sql-reference/sql-functions.html) in the sentence.
 
@@ -120,7 +121,7 @@ As always, you can use [SQL functions](https://docs.datalayers.cn/datalayers/lat
 You can use below command to exit processes.
 
 ``` bash
-docker compose -f standalone.yaml down
+docker compose -f cluster.yaml down
 ```
 
 
@@ -128,6 +129,6 @@ docker compose -f standalone.yaml down
 
 [Apache License 2.0](./LICENSE)
 
-## Cluster-mode
+## Standalone-mode
 
-Click to [Cluster-mode](./README_CLUSTER.md) documentation.
+Click to [Standalone-mode](./README.md) documentation.

@@ -10,6 +10,8 @@ datasources:
       host: "datalayers:8360"
       selectedAuthType: "username/password"
       username: "admin"
+      metadata:
+        - database: "demo"
     secureJsonData:
       password: "public"
     version: 1
