@@ -25,12 +25,6 @@ Starts with standalone mode:
 docker compose -f standalone.yaml up -d
 ```
 
-Or starts with cluster mode:
-
-``` bash
-docker compose -f cluster.yaml up -d --scale datalayers=2
-```
-
 ![docker-compose up](./static/images/docker_compose.gif)
 
 4. Running the following commands to see the message from DataLayers: (If you don't care about logs, skip it.)
@@ -41,12 +35,6 @@ Standalone mode:
 docker compose -f standalone.yaml logs datalayers
 ```
 
-Cluster mode:
-
-``` bash
-docker compose -f cluster.yaml logs datalayers
-```
-
 5. Connect to DataLayers using the command-line tool:
 
 Standalone mode:
@@ -55,25 +43,12 @@ Standalone mode:
 docker compose -f standalone.yaml exec -it datalayers dlsql -u admin -p public
 ```
 
-Cluster mode:
-
-```bash
-docker compose -f cluster.yaml exec -it datalayers dlsql -u admin -p public
-```
-
 6. Create a database using the command-line tool:
 
 Standalone mode:
 
 ```bash
 docker compose -f standalone.yaml exec -it datalayers dlsql -u admin -p public
-dlsql> create database demo;
-```
-
-Cluster mode:
-
-```bash
-docker compose -f cluster.yaml exec -it datalayers dlsql -u admin -p public
 dlsql> create database demo;
 ```
 
@@ -117,15 +92,6 @@ docker compose -f standalone.yaml exec -it datalayers dlsql -u admin -p public
 dlsql> select * from demo.test limit 10
 ```
 
-
-Cluster mode:
-
-``` bash
-docker compose -f cluster.yaml exec -it datalayers dlsql -u admin -p public
-
-dlsql> select * from demo.test limit 10
-```
-
 8. Visualize data using Grafana:
 
 Try to add dashboard by `Menu - Dashboards` page.
@@ -156,11 +122,6 @@ Standalone mode:
 docker compose -f standalone.yaml down
 ```
 
-Cluster mode:
-
-``` bash
-docker compose -f cluster.yaml down
-```
 
 ## License
 
