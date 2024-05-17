@@ -23,8 +23,6 @@ Visualize the data stored in DataLayers using Grafana.
 docker compose -f standalone.yaml up -d
 ```
 
-![docker-compose up](./static/images/docker_compose.gif)
-
 4. Running the following commands to see the message from DataLayers: (If you don't care about logs, skip it.)
 
 ``` bash
