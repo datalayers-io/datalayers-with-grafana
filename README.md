@@ -3,26 +3,26 @@ Visualize the data stored in DataLayers using Grafana.
 
 ## How to use
 
-1. Clone the code repository:
+1. Clone the code repository.
 
   ```bash
-  git clone https://github.com/datalayers-io/datalayers-with-grafana.git
+  $ git clone https://github.com/datalayers-io/datalayers-with-grafana.git
   ```
   
 2. Please run the following script first.
 
 ``` bash
-cd datalayers-with-grafana && ./init.sh
+$ cd datalayers-with-grafana && ./init.sh
 ```
 
-3. Please make sure you have installed [docker](https://www.docker.com/), and then run the following commands to start the demo:
+3. Please make sure you have installed [docker](https://www.docker.com/), and then run the following commands to start the demo.
 
 ``` bash
-docker pull datalayers/datalayers:nightly
+$ docker pull datalayers/datalayers:nightly
 ```
 
 ``` bash
-docker compose -f standalone.yaml up -d
+$ docker compose -f standalone.yaml up -d
 ```
 
 4. Perform database operations using command line tools:
@@ -68,7 +68,7 @@ done
 7. Query data using command line tools:
 
 ```bash
-docker compose -f standalone.yaml exec -it datalayers dlsql -u admin -p public
+$ docker compose -f standalone.yaml exec -it datalayers dlsql -u admin -p public
 ```
 
 ```sql
@@ -89,7 +89,7 @@ Try to add dashboard by `Menu - Dashboards` page.
 For example:
 
 ```sql
-SELECT date_bin('5 seconds', ts) as timepoint, avg(speed) FROM demo.test group by timepoint;
+> SELECT date_bin('5 seconds', ts) as timepoint, avg(speed) FROM demo.test group by timepoint;
 ```
 As always, you can use [SQL functions](https://docs.datalayers.cn/datalayers/latest/sql-reference/sql-functions.html) in the sentence.
 
