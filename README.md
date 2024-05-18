@@ -36,9 +36,6 @@ $ docker compose -f standalone.yaml exec -it datalayers dlsql -u admin -p public
 
 ```sql
 > use demo;
-```
-
-```sql
 > CREATE TABLE test(
     ts TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     sn int NOT NULL,
