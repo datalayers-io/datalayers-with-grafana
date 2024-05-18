@@ -35,18 +35,18 @@ $ docker compose -f standalone.yaml exec -it datalayers dlsql -u admin -p public
 5. Create tables:
 
 ```sql
-use demo;
+> use demo;
 ```
 
 ```sql
-CREATE TABLE test(
-  ts TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  sn int NOT NULL,
-  speed float NOT NULL,
-  temperature float,
-  timestamp KEY (ts))
-PARTITION BY HASH(sn) PARTITIONS 2
-ENGINE=TimeSeries;
+> CREATE TABLE test(
+    ts TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    sn int NOT NULL,
+    speed float NOT NULL,
+    temperature float,
+    timestamp KEY (ts))
+  PARTITION BY HASH(sn) PARTITIONS 2
+  ENGINE=TimeSeries;
 ```
 Use `exit` to quit the command line tool.
 
@@ -94,11 +94,7 @@ SELECT date_bin('5 seconds', ts) as timepoint, avg(speed) FROM demo.test group b
 As always, you can use [SQL functions](https://docs.datalayers.cn/datalayers/latest/sql-reference/sql-functions.html) in the sentence.
 
 ## Cluster Mode
-
 Click to [Cluster-mode](./README_CLUSTER.md) documentation.
-
-> If you want to quick start with cluster-mode. Please use `docker compose -f standalone.yaml down` to stop the services first.
-
 
 ## License
 
