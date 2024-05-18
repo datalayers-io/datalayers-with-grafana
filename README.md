@@ -72,7 +72,7 @@ docker compose -f standalone.yaml exec -it datalayers dlsql -u admin -p public
 ```
 
 ```sql
-select * from demo.test limit 10
+> select * from demo.test limit 10
 ```
 
 8. Use Grafana for data visualization:
