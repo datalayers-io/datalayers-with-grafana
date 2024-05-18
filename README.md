@@ -1,4 +1,4 @@
-# DataLayers with Grafana(standalone)
+# DataLayers with Grafana
 Visualize the data stored in DataLayers using Grafana.
 
 ## How to use
@@ -12,11 +12,7 @@ Visualize the data stored in DataLayers using Grafana.
 2. Please run the following script first.
 
 ``` bash
-cd datalayers-with-grafana
-```
-
-```bash
-./init.sh  
+cd datalayers-with-grafana && ./init.sh
 ```
 
 3. Please make sure you have installed [docker](https://www.docker.com/), and then run the following commands to start the demo:
