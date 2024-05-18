@@ -19,9 +19,6 @@ $ cd datalayers-with-grafana && ./init.sh
 
 ``` bash
 $ docker pull datalayers/datalayers:nightly
-```
-
-``` bash
 $ docker compose -f standalone.yaml up -d
 ```
 
