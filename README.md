@@ -3,7 +3,7 @@ Visualize the data stored in DataLayers using Grafana.
 
 ## How to use
 
-1. Clone the code repository. Please make sure you have installed the `git`, and then running the following commands to start the demo:
+1. Clone the code repository:
 
   ```bash
   git clone https://github.com/datalayers-io/datalayers-with-grafana.git
@@ -19,7 +19,7 @@ cd datalayers-with-grafana
 ./init.sh  
 ```
 
-3. Please make sure you have installed the [docker](https://www.docker.com/), and then running the following commands to start the demo:
+3. Please make sure you have installed [docker](https://www.docker.com/), and then run the following commands to start the demo:
 
 ``` bash
 docker pull datalayers/datalayers:nightly
@@ -29,37 +29,20 @@ docker pull datalayers/datalayers:nightly
 docker compose -f standalone.yaml up -d
 ```
 
-4. Running the following commands to see the message from DataLayers: (If you don't care about logs, skip it.)
-
-``` bash
-docker compose -f standalone.yaml logs datalayers
-```
-
-5. Connect to DataLayers using the command-line tool:
+4. Perform database operations using command line tools:
 
 ```bash
-docker compose -f standalone.yaml exec -it datalayers dlsql -u admin -p public
+$ docker compose -f standalone.yaml exec -it datalayers dlsql -u admin -p public
+> create database demo;
 ```
 
-6. Create a database using the command-line tool:
+5. Create tables:
 
-``` bash
-docker compose -f standalone.yaml exec -it datalayers dlsql -u admin -p public
-```
-
-```bash
-create database demo;
-```
-
-![docker-compose create](./static/images/create_database_standalone.gif)
-
-7. Create tables:
-
-``` bash
+```sql
 use demo;
 ```
 
-``` bash
+```sql
 CREATE TABLE test(
   ts TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   sn int NOT NULL,
@@ -69,11 +52,11 @@ CREATE TABLE test(
 PARTITION BY HASH(sn) PARTITIONS 2
 ENGINE=TimeSeries;
 ```
-You can use `exit` command to exit `command-line tool` session.
+Use `exit` to quit the command line tool.
 
 6. Use the following script to write data:
 
-``` bash
+```bash
 while true
 do
   speed=$((RANDOM % 21 + 100))
@@ -86,17 +69,17 @@ do
 done
 ```
 
-7. Query data through the command line:
+7. Query data using command line tools:
 
-``` bash
+```bash
 docker compose -f standalone.yaml exec -it datalayers dlsql -u admin -p public
 ```
 
-``` bash
+```sql
 select * from demo.test limit 10
 ```
 
-8. Visualize data using Grafana:
+8. Use Grafana for data visualization:
 
 Visit: [http://localhost:13000/](http://localhost:13000/)
 
@@ -109,28 +92,19 @@ Try to add dashboard by `Menu - Dashboards` page.
 
 For example:
 
-``` sql
+```sql
 SELECT date_bin('5 seconds', ts) as timepoint, avg(speed) FROM demo.test group by timepoint;
 ```
 As always, you can use [SQL functions](https://docs.datalayers.cn/datalayers/latest/sql-reference/sql-functions.html) in the sentence.
 
+## Cluster Mode
 
+Click to [Cluster-mode](./README_CLUSTER.md) documentation.
 
-## End the experience
-
-You can use below command to exit processes.
-
-``` bash
-docker compose -f standalone.yaml down
-```
+> If you want to quick start with cluster-mode. Please use `docker compose -f standalone.yaml down` to stop the services first.
 
 
 ## License
 
 [Apache License 2.0](./LICENSE)
 
-## Cluster-mode
-
-Click to [Cluster-mode](./README_CLUSTER.md) documentation.
-
-> If you want to quick start with cluster-mode. Please use `docker compose -f standalone.yaml down` to stop the services first.
