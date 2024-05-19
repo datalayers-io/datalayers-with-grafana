@@ -54,7 +54,7 @@ do
   timestamp=$(date +%s%9N) # ns
   code="insert into demo.test(sn,speed,temperature) values(10000, ${temperature}, ${speed})"
   echo "$code"
-  curl -u"admin:public" -X POST http://127.0.0.1:18361/api/v1/sql?db=demo -H 'Content-Type: application/binary' -d "$code" -s -o /dev/null
+  curl -u"admin:public" -X POST http://127.0.0.1:28361/api/v1/sql?db=demo -H 'Content-Type: application/binary' -d "$code" -s -o /dev/null
   sleep 1
 done
 ```
@@ -71,7 +71,7 @@ $ docker compose -f cluster.yaml exec -it datalayers dlsql -u admin -p public
 
 8. Use Grafana for data visualization:
 
-Visit: [http://localhost:13000/](http://localhost:13000/)
+Visit: [http://localhost:23000/](http://localhost:23000/)
 
 > Username: admin <br> Password: admin
 
