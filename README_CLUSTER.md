@@ -18,14 +18,12 @@ $ cd datalayers-with-grafana && ./init.sh
 3. Please make sure you have installed [docker](https://www.docker.com/), and then run the following commands to start the demo:
 
 ``` bash
-$ docker pull datalayers/datalayers:nightly
-```
-
-``` bash
+$ docker pull datalayers/datalayers:nightlys
 $ docker compose -f cluster.yaml up -d
 ```
 
 4. Perform database operations using command line tools:
+
 ```bash
 $ docker compose -f cluster.yaml exec -it datalayers dlsql -u admin -p public
 > create database demo;
@@ -33,7 +31,7 @@ $ docker compose -f cluster.yaml exec -it datalayers dlsql -u admin -p public
 
 5. Create tables:
 
-``` bash
+``` sql
 > use demo;
 > CREATE TABLE test(
     ts TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -65,6 +63,9 @@ done
 
 ``` bash
 $ docker compose -f cluster.yaml exec -it datalayers dlsql -u admin -p public
+```
+
+``` sql
 > select * from demo.test limit 10
 ```
 

@@ -62,7 +62,7 @@ services:
     container_name: datalayers-cluster-prometheus
     image: prom/prometheus:v2.30.3
     ports:
-      - 19090:9090
+      - 29090:9090
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     command:
@@ -77,7 +77,7 @@ services:
     container_name: datalayers-cluster-grafana
     image: grafana/grafana:10.2.3
     ports:
-      - 13000:3000
+      - 23000:3000
     environment:
       - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=datalayers
     volumes:
@@ -93,7 +93,7 @@ services:
     container_name: datalayers-cluster-proxy
     image: nginx:latest
     ports:
-      - "18361:80"
+      - "28361:80"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
