@@ -18,14 +18,12 @@ $ cd datalayers-with-grafana && ./init.sh
 3. Please make sure you have installed [docker](https://www.docker.com/), and then run the following commands to start the demo:
 
 ``` bash
-$ docker pull datalayers/datalayers:nightly
-```
-
-``` bash
+$ docker pull datalayers/datalayers:nightlys
 $ docker compose -f cluster.yaml up -d
 ```
 
 4. Perform database operations using command line tools:
+
 ```bash
 $ docker compose -f cluster.yaml exec -it datalayers dlsql -u admin -p public
 > create database demo;
@@ -33,7 +31,7 @@ $ docker compose -f cluster.yaml exec -it datalayers dlsql -u admin -p public
 
 5. Create tables:
 
-``` bash
+``` sql
 > use demo;
 > CREATE TABLE test(
     ts TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -56,7 +54,7 @@ do
   timestamp=$(date +%s%9N) # ns
   code="insert into demo.test(sn,speed,temperature) values(10000, ${temperature}, ${speed})"
   echo "$code"
-  curl -u"admin:public" -X POST http://127.0.0.1:18361/api/v1/sql?db=demo -H 'Content-Type: application/binary' -d "$code" -s -o /dev/null
+  curl -u"admin:public" -X POST http://127.0.0.1:28361/api/v1/sql?db=demo -H 'Content-Type: application/binary' -d "$code" -s -o /dev/null
   sleep 1
 done
 ```
@@ -65,12 +63,15 @@ done
 
 ``` bash
 $ docker compose -f cluster.yaml exec -it datalayers dlsql -u admin -p public
+```
+
+``` sql
 > select * from demo.test limit 10
 ```
 
 8. Use Grafana for data visualization:
 
-Visit: [http://localhost:13000/](http://localhost:13000/)
+Visit: [http://localhost:23000/](http://localhost:23000/)
 
 > Username: admin <br> Password: admin
 
