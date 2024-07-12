@@ -14,7 +14,7 @@ services:
 
   fdb-helper:
     container_name: datalayers-cluster-fdb-helper
-    image: datalayers/datalayers:nightly
+    image: datalayers/datalayers-exporter:nightly
     healthcheck:
       test: ["CMD", "fdbcli", "-exec", "status"]
       interval: 3s
@@ -25,7 +25,7 @@ services:
     depends_on:
       fdb:
         condition: service_healthy
-    command:
+    entrypoint:
       - /bin/bash
       - -c
       - |
@@ -39,6 +39,7 @@ services:
       - DATALAYERS_SERVER__AUTH__USERNAME=admin
       - DATALAYERS_SERVER__AUTH__PASSWORD=public
       - DATALAYERS_STORAGE__TYPE=fdb
+      - DATALAYERS_SERVER__STANDALONE=false
     volumes:
       - ./fdb.cluster:/etc/foundationdb/fdb.cluster
     depends_on:
@@ -49,8 +50,8 @@ services:
       interval: 5s
       timeout: 5s
       retries: 12
-    command:
-      - /bin/bash
+    entrypoint:
+      - bash
       - -c
       - |
         export DATALAYERS_NODE__NAME="$(hostname -i):8366"

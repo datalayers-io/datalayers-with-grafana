@@ -19,8 +19,10 @@ $ cd datalayers-with-grafana && ./init.sh
 
 ``` bash
 $ docker pull datalayers/datalayers:nightlys
-$ docker compose -f cluster.yaml up -d
+$ docker compose -f cluster.yaml up -d  --scale datalayers=2
 ```
+
+`--scale datalayers=2` means to run 2 instances of datalayers.
 
 4. Perform database operations using command line tools:
 
