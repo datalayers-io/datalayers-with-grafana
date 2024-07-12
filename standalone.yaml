@@ -10,11 +10,6 @@ services:
       - DATALAYERS_SERVER__AUTH__USERNAME=admin
       - DATALAYERS_SERVER__AUTH__PASSWORD=public
       - DATALAYERS_STORAGE__TYPE=local
-    command:
-      - /bin/bash
-      - -c
-      - |
-        datalayers --standalone
     networks:
       - datalayers-standalone-network
 
