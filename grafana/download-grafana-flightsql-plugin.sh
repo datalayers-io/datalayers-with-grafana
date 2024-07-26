@@ -2,7 +2,7 @@
 
 # Set repository information
 REPO_OWNER="datalayers-io"
-REPO_NAME="grafana-flightsql-datasource"
+REPO_NAME="grafana-datalayers-datasource"
 API_URL="https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases"
 
 # Fetch all release information
@@ -24,5 +24,5 @@ fi
 
 echo "The latest release tag of $REPO_NAME is: $LATEST_RELEASE_TAG"
 
-curl -L https://github.com/datalayers-io/grafana-flightsql-datasource/releases/download/$LATEST_RELEASE_TAG/datalayers-$VERSION.zip --output ./grafana/datalayers.zip
-unzip ./grafana/datalayers.zip -d ./grafana
+curl -L https://github.com/datalayers-io/grafana-datalayers-datasource/releases/download/$LATEST_RELEASE_TAG/grafana-datalayers-datasource-$VERSION.zip --output ./grafana/grafana-datalayers-datasource.zip
+unzip ./grafana/grafana-datalayers-datasource.zip -d ./grafana
