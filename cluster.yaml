@@ -85,7 +85,7 @@ services:
       # https://grafana.com/docs/grafana/latest/setup-grafana/configure-docker/#default-paths
       - ./grafana/datasource.yaml:/etc/grafana/provisioning/datasources/grafana-datalayers-datasource.yaml
       - ./grafana/providers.yaml:/etc/grafana/provisioning/dashboards/grafana-datalayers-datasource.yaml
-      - ./grafana/dashboard.json:/var/lib/grafana/dashboards/grafana-datalayers-datasource.json
+      - ./grafana/dashboard.json:/var/lib/grafana/dashboards/grafana-datalayers-datasource/dashboard.json
       - ./grafana/grafana-datalayers-datasource:/var/lib/grafana/plugins/grafana-datalayers-datasource
     networks:
       - datalayers-cluster-network
