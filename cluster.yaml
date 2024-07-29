@@ -76,17 +76,17 @@ services:
 
   grafana:
     container_name: datalayers-cluster-grafana
-    image: grafana/grafana:10.2.3
+    image: grafana/grafana:11.0.0
     ports:
       - 23000:3000
     environment:
-      - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=datalayers
+      - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=grafana-datalayers-datasource
     volumes:
-      ## https://grafana.com/docs/grafana/latest/setup-grafana/configure-docker/#default-paths
-      - ./grafana/datasource.yaml:/etc/grafana/provisioning/datasources/datalayers.yaml
-      - ./grafana/providers.yaml:/etc/grafana/provisioning/dashboards/datalayers.yaml
-      - ./grafana/dashboard.json:/var/lib/grafana/dashboards/datalayers/dashboard.json
-      - ./grafana/datalayers:/var/lib/grafana/plugins/datalayers
+      # https://grafana.com/docs/grafana/latest/setup-grafana/configure-docker/#default-paths
+      - ./grafana/datasource.yaml:/etc/grafana/provisioning/datasources/grafana-datalayers-datasource.yaml
+      - ./grafana/providers.yaml:/etc/grafana/provisioning/dashboards/grafana-datalayers-datasource.yaml
+      - ./grafana/dashboard.json:/var/lib/grafana/dashboards/grafana-datalayers-datasource/dashboard.json
+      - ./grafana/grafana-datalayers-datasource:/var/lib/grafana/plugins/grafana-datalayers-datasource
     networks:
       - datalayers-cluster-network
 

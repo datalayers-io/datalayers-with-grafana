@@ -53,7 +53,6 @@ while true
 do
   speed=$((RANDOM % 21 + 100))
   temperature=$((RANDOM % 11 + 10))
-  timestamp=$(date +%s%9N) # ns
   code="insert into demo.test(sn,speed,temperature) values(10000, ${temperature}, ${speed})"
   echo "$code"
   curl -u"admin:public" -X POST http://127.0.0.1:28361/api/v1/sql?db=demo -H 'Content-Type: application/binary' -d "$code" -s -o /dev/null
