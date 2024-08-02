@@ -3,5 +3,5 @@ apiVersion: 1
 providers:
   - name: "DataLayers"
     options:
-      path: "/var/lib/grafana/dashboards/grafana-datalayers-datasource"
+      path: "/var/lib/grafana/dashboards/datalayersio-datasource"
     type: file
