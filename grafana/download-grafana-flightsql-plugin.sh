@@ -24,5 +24,5 @@ fi
 
 echo "The latest release tag of $REPO_NAME is: $LATEST_RELEASE_TAG"
 
-curl -L https://github.com/datalayers-io/grafana-datalayers-datasource/releases/download/$LATEST_RELEASE_TAG/grafana-datalayers-datasource-$VERSION.zip --output ./grafana/grafana-datalayers-datasource.zip
-unzip ./grafana/grafana-datalayers-datasource.zip -d ./grafana
+curl -L https://github.com/datalayers-io/grafana-datalayers-datasource/releases/download/$LATEST_RELEASE_TAG/datalayersio-datasource-$VERSION.zip --output ./grafana/datalayersio-datasource.zip
+unzip ./grafana/datalayersio-datasource.zip -d ./grafana

@@ -2,9 +2,9 @@
 apiVersion: 1
 datasources:
   - name: Datalayers
-    type: grafana-datalayers-datasource
+    type: datalayersio-datasource
     orgId: 1
-    uid: "grafana-datalayers-datasource"
+    uid: "datalayersio-datasource"
     url: http://datalayers:8360
     jsonData:
       host: "datalayers:8360"
@@ -22,7 +22,7 @@ datasources:
     type: prometheus
     access: proxy
     orgId: 1
-    uid: "prom"
+    uid: "prometheus"
     url: http://prometheus:9090
     isDefault: false
     version: 1
