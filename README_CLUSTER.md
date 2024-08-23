@@ -18,7 +18,7 @@ $ cd datalayers-with-grafana && ./init.sh
 3. Please make sure you have installed [docker](https://www.docker.com/), and then run the following commands to start the demo:
 
 ``` bash
-$ docker pull datalayers/datalayers:nightlys
+$ docker pull datalayers/datalayers:nightly
 $ docker compose -f cluster.yaml up -d  --scale datalayers=2
 ```
 
