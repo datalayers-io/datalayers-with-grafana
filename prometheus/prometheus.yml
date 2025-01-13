@@ -14,3 +14,13 @@ scrape_configs:
       - names: ["datalayers"]
         type: "A"
         port: 8361
+
+  - job_name: foundationdb 
+    honor_timestamps: true
+    scrape_interval: 5s
+    scrape_timeout: 5s
+    metrics_path: /metrics/meta
+    scheme: http
+    follow_redirects: true
+    static_configs:
+      - targets: ["datalayers:8361"]
