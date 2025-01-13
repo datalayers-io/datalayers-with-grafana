@@ -1,19 +1,17 @@
-version: "3.9"
-
 services:
   fdb:
-    container_name: datalayers-cluster-fdb
-    image: foundationdb/foundationdb:7.3.27
+    container_name: demo-foundationdb 
+    image: foundationdb/foundationdb:7.3.57
     healthcheck:
       test: ["CMD", "nc", "-zv", "localhost", "4500"]
       interval: 3s
       timeout: 1s
       retries: 10
     networks:
-      - datalayers-cluster-network
+      - datalayers-network
 
-  fdb-helper:
-    container_name: datalayers-cluster-fdb-helper
+  fdb-sidecar:
+    container_name: demo-fdb-sidecar
     image: datalayers/datalayers-exporter:nightly
     healthcheck:
       test: ["CMD", "fdbcli", "-exec", "status"]
@@ -31,19 +29,17 @@ services:
       - |
         fdbcli --exec "configure new single ssd-rocksdb-v1"
     networks:
-      - datalayers-cluster-network
-
+      - datalayers-network
   datalayers:
     image: datalayers/datalayers:nightly
     environment:
       - DATALAYERS_SERVER__AUTH__USERNAME=admin
       - DATALAYERS_SERVER__AUTH__PASSWORD=public
-      - DATALAYERS_STORAGE__TYPE=fdb
       - DATALAYERS_SERVER__STANDALONE=false
     volumes:
       - ./fdb.cluster:/etc/foundationdb/fdb.cluster
     depends_on:
-      fdb-helper:
+      fdb-sidecar:
         condition: service_completed_successfully
     healthcheck:
       test: ["CMD", "dlsql", "-u", "admin", "-p", "public"]
@@ -57,13 +53,11 @@ services:
         export DATALAYERS_NODE__NAME="$(hostname -i):8366"
         datalayers
     networks:
-      - datalayers-cluster-network
+      - datalayers-network
 
   prometheus:
-    container_name: datalayers-cluster-prometheus
-    image: prom/prometheus:v2.30.3
-    ports:
-      - 29090:9090
+    container_name: demo-prometheus
+    image: prom/prometheus:latest
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     command:
@@ -72,13 +66,11 @@ services:
       - --storage.tsdb.retention.time=15d
       - --storage.tsdb.retention.size=20GB
     networks:
-      - datalayers-cluster-network
+      - datalayers-network
 
   grafana:
-    container_name: datalayers-cluster-grafana
-    image: grafana/grafana:11.0.0
-    ports:
-      - 23000:3000
+    container_name: demo-grafana
+    image: grafana/grafana:latest
     environment:
       - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=datalayersio-datasource
     volumes:
@@ -87,22 +79,26 @@ services:
       - ./grafana/providers.yaml:/etc/grafana/provisioning/dashboards/datalayersio-datasource.yaml
       - ./grafana/dashboard-configured.json:/var/lib/grafana/dashboards/datalayersio-datasource/dashboard.json
       - ./grafana/datalayersio-datasource:/var/lib/grafana/plugins/datalayersio-datasource
+      - ./grafana/foundationdb-configured.json:/var/lib/grafana/dashboards/datalayersio-datasource/foundationdb-dashboard.json
     networks:
-      - datalayers-cluster-network
+      - datalayers-network
 
   web-proxy:
-    container_name: datalayers-cluster-proxy
+    container_name: demo-proxy
     image: nginx:latest
     ports:
-      - "28361:80"
+      - "28361:8361" # Datalayers HTTP
+      - "28360:8360" # Flight SQL
+      - "30000:3000" # Grafana
+      - "29090:9090" # Prometheus
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       datalayers:
         condition: service_healthy
     networks:
-      - datalayers-cluster-network
+      - datalayers-network
 
 networks:
-  datalayers-cluster-network:
+  datalayers-network:
     driver: bridge
