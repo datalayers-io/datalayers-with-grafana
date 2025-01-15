@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 5,
+  "id": 2,
   "links": [],
   "panels": [
     {
@@ -134,6 +134,10 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4664,6 +4668,6 @@
   "timezone": "",
   "title": "FoundationDB",
   "uid": "kklWA0AWk",
-  "version": 48,
+  "version": 1,
   "weekStart": ""
 }
