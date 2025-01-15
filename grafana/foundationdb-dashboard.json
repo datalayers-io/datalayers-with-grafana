@@ -177,6 +177,10 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -255,7 +259,11 @@
         {
           "expr": "fdb_database_locked{namespace=\"$namespace\", job=\"$job\"}",
           "instant": true,
-          "refId": "A"
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         }
       ],
       "title": "Database is Locked",
@@ -4942,6 +4950,6 @@
   "timezone": "",
   "title": "FoundationDB",
   "uid": "kklWA0AWk",
-  "version": 48,
+  "version": 1,
   "weekStart": ""
 }
