@@ -36,6 +36,10 @@ services:
       - DATALAYERS_SERVER__AUTH__USERNAME=admin
       - DATALAYERS_SERVER__AUTH__PASSWORD=public
       - DATALAYERS_SERVER__STANDALONE=false
+      - DATALAYERS_SERVER__REDIS=0.0.0.0:8362
+      - DATALAYERS_TS_ENGINE__FLUSH_ON_EXIT=false
+      - DATALAYERS_TS_ENGINE__META_CACHE_SIZE=1G
+      - DATALAYERS_STORAGE__OBJECT_STORE__FDB__WRITE_RATE_LIMIT=2MB
     volumes:
       - ./fdb.cluster:/etc/foundationdb/fdb.cluster
     depends_on:
@@ -89,6 +93,7 @@ services:
     ports:
       - "28361:8361" # Datalayers HTTP
       - "28360:8360" # Flight SQL
+      - "28362:8362" # Redis
       - "30000:3000" # Grafana
       - "29090:9090" # Prometheus
     volumes:
