@@ -1,7 +1,7 @@
 services:
   fdb:
     container_name: demo-foundationdb 
-    image: foundationdb/foundationdb:7.3.57
+    image: foundationdb/foundationdb:7.3.63
     healthcheck:
       test: ["CMD", "nc", "-zv", "localhost", "4500"]
       interval: 3s
@@ -27,7 +27,7 @@ services:
       - /bin/bash
       - -c
       - |
-        fdbcli --exec "configure new single ssd-rocksdb-v1"
+        fdbcli --exec "configure new single ssd-redwood-1"
     networks:
       - datalayers-network
   datalayers:
@@ -37,9 +37,12 @@ services:
       - DATALAYERS_SERVER__AUTH__PASSWORD=public
       - DATALAYERS_SERVER__STANDALONE=false
       - DATALAYERS_SERVER__REDIS=0.0.0.0:8362
-      - DATALAYERS_TS_ENGINE__FLUSH_ON_EXIT=false
+      - DATALAYERS_TS_ENGINE__FLUSH_ON_EXIT=true
       - DATALAYERS_TS_ENGINE__META_CACHE_SIZE=1G
       - DATALAYERS_STORAGE__OBJECT_STORE__FDB__WRITE_RATE_LIMIT=2MB
+      - DATALAYERS_SCHEDULER__CLUSTER_COMPACT_ACTIVE__CONCURRENCE_LIMIT=1
+      - DATALAYERS_NODE__AUTO_FAILOVER=true
+      #- DATALAYERS_RUNTIME__BACKGROUND_CPU_CORES=2
     volumes:
       - ./fdb.cluster:/etc/foundationdb/fdb.cluster
     depends_on:
