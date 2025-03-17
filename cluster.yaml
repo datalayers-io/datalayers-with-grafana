@@ -12,7 +12,7 @@ services:
 
   fdb-sidecar:
     container_name: demo-fdb-sidecar
-    image: datalayers/datalayers-exporter:nightly
+    image: foundationdb/foundationdb:7.3.63
     healthcheck:
       test: ["CMD", "fdbcli", "-exec", "status"]
       interval: 3s
@@ -27,7 +27,7 @@ services:
       - /bin/bash
       - -c
       - |
-        fdbcli --exec "configure new single ssd-redwood-1"
+        fdbcli -C /etc/foundationdb/fdb.cluster --exec "configure new single ssd-redwood-1"
     networks:
       - datalayers-network
   datalayers:
@@ -57,7 +57,7 @@ services:
       - bash
       - -c
       - |
-        export DATALAYERS_NODE__NAME="$(hostname -i):8366"
+        export DATALAYERS_NODE__NAME="$(hostname):8366"
         datalayers
     networks:
       - datalayers-network
