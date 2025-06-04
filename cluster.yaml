@@ -31,7 +31,7 @@ services:
     networks:
       - datalayers-network
   datalayers:
-    image: datalayers/datalayers:nightly
+    image: datalayers/datalayers:v2.3.3
     environment:
       - DATALAYERS_SERVER__AUTH__USERNAME=admin
       - DATALAYERS_SERVER__AUTH__PASSWORD=public
@@ -84,7 +84,7 @@ services:
       # https://grafana.com/docs/grafana/latest/setup-grafana/configure-docker/#default-paths
       - ./grafana/datasource.yaml:/etc/grafana/provisioning/datasources/datalayersio-datasource.yaml
       - ./grafana/providers.yaml:/etc/grafana/provisioning/dashboards/datalayersio-datasource.yaml
-      - ./grafana/dashboard-configured.json:/var/lib/grafana/dashboards/datalayersio-datasource/dashboard.json
+      - ./grafana/datalayers-dashboard.json:/var/lib/grafana/dashboards/datalayersio-datasource/datalayers-dashboard.json
       - ./grafana/datalayersio-datasource:/var/lib/grafana/plugins/datalayersio-datasource
       - ./grafana/foundationdb-configured.json:/var/lib/grafana/dashboards/datalayersio-datasource/foundationdb-dashboard.json
     networks:
