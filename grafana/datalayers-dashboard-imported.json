@@ -105,7 +105,7 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 4,
+        "w": 5,
         "x": 0,
         "y": 1
       },
@@ -137,7 +137,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(rate(datalayers_ingest_rows_total{instance=~\"$instance\"}[1m] offset 1m))",
+          "expr": "sum(rate(datalayers_ingest_rows_total{instance=~\"$instance\"}[10s] offset 10s))",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -177,7 +177,7 @@
       "gridPos": {
         "h": 3,
         "w": 4,
-        "x": 4,
+        "x": 5,
         "y": 1
       },
       "id": 35,
@@ -208,7 +208,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(rate(datalayers_select_total{instance=~\"$instance\"}[1m] offset 1m))",
+          "expr": "sum(rate(datalayers_select_total{instance=~\"$instance\"}[10s] offset 10s))",
           "instant": true,
           "legendFormat": "QPS",
           "range": false,
@@ -216,285 +216,6 @@
         }
       ],
       "title": "Queries(times)",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 8,
-        "y": 1
-      },
-      "id": 12,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "center",
-        "orientation": "horizontal",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.6.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum(datalayers_flush_concurrence_limit{instance=~\"$instance\"})",
-          "format": "time_series",
-          "instant": true,
-          "legendFormat": "Limit",
-          "range": false,
-          "refId": "A"
-        }
-      ],
-      "title": "Flush parallelism limit",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 11,
-        "y": 1
-      },
-      "id": 41,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "center",
-        "orientation": "horizontal",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.6.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum(datalayers_flush_running_length{instance=~\"$instance\"})",
-          "format": "time_series",
-          "instant": false,
-          "legendFormat": "Limit",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Flushes in progress",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 4,
-        "x": 14,
-        "y": 1
-      },
-      "id": 31,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.6.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "max(datalayers_compact_concurrence_limit{instance=~\"$instance\"})",
-          "instant": true,
-          "legendFormat": "Limit",
-          "range": false,
-          "refId": "A"
-        }
-      ],
-      "title": "Maximum parallelism for compaction",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 18,
-        "y": 1
-      },
-      "id": 42,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.6.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum(datalayers_compact_running_length{instance=~\"$instance\"})",
-          "format": "time_series",
-          "instant": false,
-          "legendFormat": "Limit",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "The number of Compaction",
       "type": "stat"
     },
     {
@@ -523,8 +244,8 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 3,
-        "x": 21,
+        "w": 4,
+        "x": 20,
         "y": 1
       },
       "id": 38,
@@ -614,14 +335,10 @@
             "steps": [
               {
                 "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
-          "unit": "deckbytes"
+          "unit": "bytes"
         },
         "overrides": []
       },
@@ -1011,9 +728,22 @@
           "legendFormat": "All",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(datalayers_compact_concurrence_limit{instance=~\"$instance\"})",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Max concurrence limit",
+          "range": true,
+          "refId": "B"
         }
       ],
-      "title": "Length of compaction running",
+      "title": "The number of compaction tasks in progress",
       "type": "timeseries"
     },
     {
@@ -1066,10 +796,6 @@
             "steps": [
               {
                 "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           }
@@ -1126,9 +852,23 @@
           "legendFormat": "All",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(datalayers_flush_concurrence_limit{instance=~\"$instance\"})",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Max concurrence limit",
+          "range": true,
+          "refId": "B"
         }
       ],
-      "title": "Length of flush running",
+      "title": "The number of flush tasks in progress",
       "type": "timeseries"
     },
     {
@@ -1235,7 +975,7 @@
           "refId": "A"
         }
       ],
-      "title": "Hit rate of Parquet Meta",
+      "title": "Hit rate of Parquet Meta cache",
       "type": "timeseries"
     },
     {
@@ -1304,7 +1044,7 @@
         "x": 0,
         "y": 16
       },
-      "id": 26,
+      "id": 29,
       "options": {
         "legend": {
           "calcs": [],
@@ -1327,7 +1067,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "datalayers_flush_pending_length{instance=~\"$instance\"}",
+          "expr": "datalayers_compact_pending_length{instance=~\"$instance\"}",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -1339,7 +1079,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "sum(datalayers_flush_pending_length{instance=~\"$instance\"})",
+          "expr": "sum(datalayers_compact_pending_length{instance=~\"$instance\"})",
           "hide": false,
           "instant": false,
           "legendFormat": "All",
@@ -1347,7 +1087,7 @@
           "refId": "B"
         }
       ],
-      "title": "Length of flush pending ",
+      "title": "The backlog of compaction tasks",
       "type": "timeseries"
     },
     {
@@ -1416,7 +1156,7 @@
         "x": 8,
         "y": 16
       },
-      "id": 29,
+      "id": 26,
       "options": {
         "legend": {
           "calcs": [],
@@ -1427,7 +1167,7 @@
         "tooltip": {
           "hideZeros": false,
           "maxHeight": 600,
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -1439,7 +1179,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "datalayers_compact_pending_length{instance=~\"$instance\"}",
+          "expr": "datalayers_flush_pending_length{instance=~\"$instance\"}",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -1451,7 +1191,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "sum(datalayers_compact_pending_length{instance=~\"$instance\"})",
+          "expr": "sum(datalayers_flush_pending_length{instance=~\"$instance\"})",
           "hide": false,
           "instant": false,
           "legendFormat": "All",
@@ -1459,7 +1199,7 @@
           "refId": "B"
         }
       ],
-      "title": "Length of compaction pending",
+      "title": "The backlog of flush tasks",
       "type": "timeseries"
     },
     {
@@ -1514,7 +1254,7 @@
               }
             ]
           },
-          "unit": "decbytes"
+          "unit": "bytes"
         },
         "overrides": []
       },
@@ -1534,7 +1274,7 @@
         },
         "tooltip": {
           "hideZeros": false,
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -1947,7 +1687,7 @@
               }
             ]
           },
-          "unit": "decbytes"
+          "unit": "bytes"
         },
         "overrides": []
       },
@@ -1967,7 +1707,7 @@
         },
         "tooltip": {
           "hideZeros": false,
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -2176,7 +1916,7 @@
         "tooltip": {
           "hideZeros": false,
           "maxHeight": 100,
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -2382,7 +2122,7 @@
         },
         "tooltip": {
           "hideZeros": false,
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -2672,7 +2412,7 @@
         },
         "tooltip": {
           "hideZeros": false,
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -2821,7 +2561,7 @@
         },
         "tooltip": {
           "hideZeros": false,
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -3127,7 +2867,7 @@
         },
         "tooltip": {
           "hideZeros": false,
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -3543,7 +3283,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(datalayers_memory_total{instance=~\"$instance\"}) by (instance)",
+          "expr": "sum(datalayers_memory_total{instance=~\"$instance\"}/ 1024 /1024 /1024)  by (instance)",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -3557,7 +3297,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(datalayers_memory_usage{instance=~\"$instance\"} / 1024 / 1024 / datalayers_memory_total{instance=~\"$instance\"}) by (instance)",
+          "expr": "sum(datalayers_memory_usage{instance=~\"$instance\"} / datalayers_memory_total{instance=~\"$instance\"}) by (instance)",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -3624,13 +3364,13 @@
     ]
   },
   "time": {
-    "from": "now-12h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Datalayers Dashboard",
   "uid": "datalayers",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }
