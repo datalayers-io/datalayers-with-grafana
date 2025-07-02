@@ -61,8 +61,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
-        "w": 5,
+        "h": 4,
+        "w": 4,
         "x": 0,
         "y": 1
       },
@@ -132,9 +132,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 4,
-        "x": 5,
+        "x": 4,
         "y": 1
       },
       "id": 35,
@@ -183,6 +183,85 @@
       "fieldConfig": {
         "defaults": {
           "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 8,
+        "y": 1
+      },
+      "id": 60,
+      "options": {
+        "displayMode": "gradient",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "11.6.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(datalayers_system_memory_usage{instance=~\"$instance\"} / datalayers_system_memory_total{instance=~\"$instance\"}) by (instance)",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Memory Usage of System",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
             "fixedColor": "dark-blue",
             "mode": "fixed"
           },
@@ -200,8 +279,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
-        "w": 4,
+        "h": 4,
+        "w": 2,
         "x": 20,
         "y": 1
       },
@@ -241,6 +320,73 @@
       ],
       "title": "Number of Nodes",
       "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "${__field.labels.instance}",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 22,
+        "y": 1
+      },
+      "id": 18,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.6.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(datalayers_panic_total{instance=~\"$instance\"})",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Panic",
+      "type": "gauge"
     },
     {
       "datasource": {
@@ -303,7 +449,7 @@
         "h": 6,
         "w": 8,
         "x": 0,
-        "y": 4
+        "y": 5
       },
       "id": 37,
       "options": {
@@ -348,7 +494,7 @@
           "refId": "B"
         }
       ],
-      "title": "Memory Usage",
+      "title": "Memory Usage of Datalayers",
       "type": "timeseries"
     },
     {
@@ -417,7 +563,7 @@
         "h": 6,
         "w": 8,
         "x": 8,
-        "y": 4
+        "y": 5
       },
       "id": 5,
       "options": {
@@ -527,7 +673,7 @@
         "h": 6,
         "w": 8,
         "x": 16,
-        "y": 4
+        "y": 5
       },
       "id": 4,
       "options": {
@@ -639,7 +785,7 @@
         "h": 6,
         "w": 8,
         "x": 0,
-        "y": 10
+        "y": 11
       },
       "id": 40,
       "options": {
@@ -763,7 +909,7 @@
         "h": 6,
         "w": 8,
         "x": 8,
-        "y": 10
+        "y": 11
       },
       "id": 39,
       "options": {
@@ -899,7 +1045,7 @@
         "h": 6,
         "w": 8,
         "x": 16,
-        "y": 10
+        "y": 11
       },
       "id": 27,
       "options": {
@@ -999,7 +1145,7 @@
         "h": 6,
         "w": 8,
         "x": 0,
-        "y": 16
+        "y": 17
       },
       "id": 29,
       "options": {
@@ -1097,10 +1243,6 @@
             "steps": [
               {
                 "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 1
               }
             ]
           }
@@ -1111,7 +1253,7 @@
         "h": 6,
         "w": 8,
         "x": 8,
-        "y": 16
+        "y": 17
       },
       "id": 26,
       "options": {
@@ -1219,7 +1361,7 @@
         "h": 6,
         "w": 8,
         "x": 16,
-        "y": 16
+        "y": 17
       },
       "id": 59,
       "options": {
@@ -1261,6 +1403,19 @@
           "legendFormat": "{{instance}}_memory_usage",
           "range": true,
           "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(datalayers_parquet_meta_cache_config_size)",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Max Memory Limit",
+          "range": true,
+          "refId": "C"
         }
       ],
       "title": "Memory Usage of Parquet Metadata Cache",
@@ -1272,7 +1427,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 22
+        "y": 23
       },
       "id": 50,
       "panels": [],
@@ -1346,7 +1501,7 @@
         "h": 6,
         "w": 6,
         "x": 0,
-        "y": 23
+        "y": 24
       },
       "id": 44,
       "options": {
@@ -1449,7 +1604,7 @@
         "h": 6,
         "w": 6,
         "x": 6,
-        "y": 23
+        "y": 24
       },
       "id": 45,
       "options": {
@@ -1556,7 +1711,7 @@
         "h": 6,
         "w": 6,
         "x": 12,
-        "y": 23
+        "y": 24
       },
       "id": 46,
       "options": {
@@ -1652,13 +1807,13 @@
         "h": 6,
         "w": 6,
         "x": 18,
-        "y": 23
+        "y": 24
       },
       "id": 51,
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "list",
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -1681,6 +1836,32 @@
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(datalayers_hybrid_cached_file_memory_config_size)",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Max Memory Limit",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(foyer_memory_usage{instance=~\"$instance\", name=\"Datalayers.file_cache\"}) ",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Memory Usage",
+          "range": true,
+          "refId": "C"
         }
       ],
       "title": "Memory Usage of File Cache",
@@ -1757,7 +1938,7 @@
         "h": 6,
         "w": 6,
         "x": 0,
-        "y": 29
+        "y": 30
       },
       "id": 47,
       "options": {
@@ -1860,7 +2041,7 @@
         "h": 6,
         "w": 6,
         "x": 6,
-        "y": 29
+        "y": 30
       },
       "id": 48,
       "options": {
@@ -1967,7 +2148,7 @@
         "h": 6,
         "w": 6,
         "x": 12,
-        "y": 29
+        "y": 30
       },
       "id": 49,
       "options": {
@@ -2067,7 +2248,7 @@
         "h": 6,
         "w": 6,
         "x": 18,
-        "y": 29
+        "y": 30
       },
       "id": 54,
       "options": {
@@ -2165,7 +2346,7 @@
         "h": 6,
         "w": 6,
         "x": 0,
-        "y": 35
+        "y": 36
       },
       "id": 55,
       "options": {
@@ -2263,7 +2444,7 @@
         "h": 6,
         "w": 6,
         "x": 6,
-        "y": 35
+        "y": 36
       },
       "id": 56,
       "options": {
@@ -2357,7 +2538,7 @@
         "h": 6,
         "w": 6,
         "x": 12,
-        "y": 35
+        "y": 36
       },
       "id": 57,
       "options": {
@@ -2506,7 +2687,7 @@
         "h": 6,
         "w": 6,
         "x": 18,
-        "y": 35
+        "y": 36
       },
       "id": 58,
       "options": {
@@ -2598,7 +2779,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 41
+        "y": 42
       },
       "id": 32,
       "panels": [],
@@ -2666,7 +2847,7 @@
         "h": 6,
         "w": 12,
         "x": 0,
-        "y": 42
+        "y": 43
       },
       "id": 1,
       "interval": "3m",
@@ -2810,7 +2991,7 @@
         "h": 6,
         "w": 12,
         "x": 12,
-        "y": 42
+        "y": 43
       },
       "id": 24,
       "interval": "3m",
@@ -2891,386 +3072,6 @@
       ],
       "title": "Latency of compact per 10MB",
       "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "smooth",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "displayName": "${__field.labels.instance}",
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 12,
-        "x": 0,
-        "y": 48
-      },
-      "id": 18,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "maxHeight": 600,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.6.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "datalayers_panic_total{instance=~\"$instance\"}",
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Count of Datalayers panic",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "left",
-            "cellOptions": {
-              "type": "auto"
-            },
-            "inspect": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#1d7911"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Time"
-            },
-            "properties": [
-              {
-                "id": "custom.hidden",
-                "value": true
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value #Memory"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Momery"
-              },
-              {
-                "id": "unit",
-                "value": "decgbytes"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value #Memory Used"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Memory Used"
-              },
-              {
-                "id": "unit",
-                "value": "percentunit"
-              },
-              {
-                "id": "decimals",
-                "value": 2
-              },
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "type": "color-background"
-                }
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "semi-dark-green"
-                    },
-                    {
-                      "color": "#EAB839",
-                      "value": 0.8
-                    },
-                    {
-                      "color": "red",
-                      "value": 0.95
-                    }
-                  ]
-                }
-              },
-              {
-                "id": "custom.width",
-                "value": 150
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value #CPU Core"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "CPU Core"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value #CPU Used"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "CPU Used(Avg)"
-              },
-              {
-                "id": "unit",
-                "value": "percentunit"
-              },
-              {
-                "id": "decimals",
-                "value": 2
-              },
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "type": "color-background"
-                }
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "percentage",
-                  "steps": [
-                    {
-                      "color": "#489c3d"
-                    },
-                    {
-                      "color": "#EAB839",
-                      "value": 80
-                    },
-                    {
-                      "color": "red",
-                      "value": 95
-                    }
-                  ]
-                }
-              },
-              {
-                "id": "custom.width",
-                "value": 150
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "instance"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Address"
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 12,
-        "x": 12,
-        "y": 48
-      },
-      "id": 33,
-      "options": {
-        "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "frameIndex": 0,
-        "showHeader": true,
-        "sortBy": [
-          {
-            "desc": true,
-            "displayName": "localhost:9797"
-          }
-        ]
-      },
-      "pluginVersion": "11.6.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum(datalayers_cpu_total{instance=~\"$instance\"}) by (instance)",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "CPU Core"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum(floor(datalayers_cpu_usage{instance=~\"$instance\"} /100) / datalayers_cpu_total{instance=~\"$instance\"}) by (instance)",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "CPU Used"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum(datalayers_memory_total{instance=~\"$instance\"}/ 1024 /1024 /1024)  by (instance)",
-          "format": "table",
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "Memory"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum(datalayers_memory_usage{instance=~\"$instance\"} / datalayers_memory_total{instance=~\"$instance\"}) by (instance)",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "Memory Used"
-        }
-      ],
-      "title": "Nodes",
-      "transformations": [
-        {
-          "id": "merge",
-          "options": {}
-        }
-      ],
-      "type": "table"
     }
   ],
   "preload": false,
