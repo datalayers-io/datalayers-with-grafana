@@ -831,19 +831,6 @@
           "legendFormat": "All",
           "range": true,
           "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "sum(datalayers_compact_concurrence_limit{instance=~\"$instance\"})",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "Max concurrence limit",
-          "range": true,
-          "refId": "B"
         }
       ],
       "title": "The number of compaction tasks in progress",
@@ -3138,5 +3125,5 @@
   "timezone": "",
   "title": "Datalayers Dashboard",
   "uid": "datalayers",
-  "version": 3
+  "version": 4
 }

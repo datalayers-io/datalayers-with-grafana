@@ -31,7 +31,7 @@ services:
     networks:
       - datalayers-network
   datalayers:
-    image: datalayers/datalayers:v2.3.4
+    image: datalayers/datalayers:v2.3.6
     environment:
       - DATALAYERS_SERVER__AUTH__USERNAME=admin
       - DATALAYERS_SERVER__AUTH__PASSWORD=public
