@@ -1,7 +1,7 @@
 services:
   datalayers:
     container_name: datalayers-standalone
-    image: datalayers/datalayers:v2.3.6
+    image: datalayers/datalayers:latest
     ports:
       - 18361:8361
       - 18360:8360
