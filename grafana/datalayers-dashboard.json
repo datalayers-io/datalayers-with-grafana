@@ -189,14 +189,14 @@
           "max": 1,
           "min": 0,
           "thresholds": {
-            "mode": "absolute",
+            "mode": "percentage",
             "steps": [
               {
                 "color": "green"
               },
               {
-                "color": "red",
-                "value": 80
+                "color": "dark-red",
+                "value": 70
               }
             ]
           },
@@ -206,7 +206,7 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 3,
+        "w": 8,
         "x": 8,
         "y": 1
       },
@@ -223,7 +223,7 @@
         "minVizHeight": 16,
         "minVizWidth": 8,
         "namePlacement": "auto",
-        "orientation": "auto",
+        "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -280,8 +280,8 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 2,
-        "x": 20,
+        "w": 3,
+        "x": 19,
         "y": 1
       },
       "id": 38,
@@ -3125,5 +3125,5 @@
   "timezone": "",
   "title": "Datalayers Dashboard",
   "uid": "datalayers",
-  "version": 4
+  "version": 5
 }
