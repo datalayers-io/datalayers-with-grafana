@@ -575,7 +575,7 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 6,
+        "w": 8,
         "x": 0,
         "y": 5
       },
@@ -583,7 +583,7 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "table",
+          "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
         },
@@ -656,108 +656,6 @@
               "mode": "off"
             }
           },
-          "mappings": [],
-          "thresholds": {
-            "mode": "percentage",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 6,
-        "x": 6,
-        "y": 5
-      },
-      "id": 62,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.6.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "datalayers_cpu_usage{instance=~\"$instance\", role=\"stateless\"}",
-          "format": "heatmap",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "interval": "",
-          "legendFormat": "{{instance}}",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
-        }
-      ],
-      "title": "CPU Usage of Datalayers",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "smooth",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
           "displayName": "${__field.labels.instance}",
           "mappings": [],
           "thresholds": {
@@ -778,15 +676,15 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 6,
-        "x": 12,
+        "w": 8,
+        "x": 8,
         "y": 5
       },
       "id": 5,
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "table",
+          "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
         },
@@ -888,15 +786,15 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 6,
-        "x": 18,
+        "w": 8,
+        "x": 16,
         "y": 5
       },
       "id": 4,
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "table",
+          "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
         },
@@ -3036,6 +2934,108 @@
           },
           "mappings": [],
           "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 9,
+        "x": 0,
+        "y": 43
+      },
+      "id": 62,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.6.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "datalayers_cpu_usage{instance=~\"$instance\", role=\"stateless\"}",
+          "format": "heatmap",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "CPU Usage of Datalayers",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
             "mode": "absolute",
             "steps": [
               {
@@ -3049,8 +3049,8 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 12,
-        "x": 0,
+        "w": 8,
+        "x": 9,
         "y": 43
       },
       "id": 1,
@@ -3193,8 +3193,8 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 12,
-        "x": 12,
+        "w": 7,
+        "x": 17,
         "y": 43
       },
       "id": 24,
@@ -3333,6 +3333,6 @@
   "timezone": "",
   "title": "Datalayers Dashboard",
   "uid": "datalayers",
-  "version": 6,
+  "version": 7,
   "weekStart": ""
 }
