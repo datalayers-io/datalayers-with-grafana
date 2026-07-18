@@ -94,7 +94,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(rate(datalayers_ingest_rows_total{}[10s] offset 10s))",
+          "expr": "sum(rate(datalayers_ingest_rows_total{}[60s]))",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -165,7 +165,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(rate(datalayers_select_total{}[10s] offset 10s))",
+          "expr": "sum(rate(datalayers_select_total{}[60s]))",
           "instant": true,
           "legendFormat": "QPS",
           "range": false,
@@ -3228,6 +3228,6 @@
   "timepicker": {},
   "timezone": "",
   "title": "Datalayers Dashboard",
-  "uid": "datalayers-x",
-  "version": 31
+  "uid": "datalayers",
+  "version":12
 }
